@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Header />
-    <AddBook v-on:add-book="addBook" />
+    <Backdrop v-if="open" v-bind:closeModal="closeModal" />
+    <Header v-bind:openModal="openModal" />
+    <AddBook v-bind:closeModal="closeModal" v-if="open" v-on:add-book="addBook" />
     <Books v-bind:books="books" v-on:del-book="deleteBook" v-on:update-book="updateBook" />
   </div>
 </template>
@@ -10,7 +11,8 @@
 import Books from "./components/Books";
 import AddBook from "./components/AddBook";
 import Header from "./components/Layout/Header";
-import firebase from "firebase";
+import Backdrop from "./components/Backdrop";
+import firebase from "firebase/app";
 import { db } from "./firebase";
 
 export default {
@@ -19,13 +21,21 @@ export default {
     Books,
     Header,
     AddBook,
+    Backdrop,
   },
   data() {
     return {
       books: [],
+      open: false,
     };
   },
   methods: {
+    openModal() {
+      this.open = true;
+    },
+    closeModal() {
+      this.open = false;
+    },
     addBook(newBook) {
       db.collection("books").add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -83,5 +93,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   background-color: #17181c;
+}
+.app {
+  position: relative;
 }
 </style>

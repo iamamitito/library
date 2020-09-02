@@ -3,13 +3,14 @@
     <h1>
       <i class="fas fa-book"></i> Library
     </h1>
-    <button>+</button>
+    <button @click="openModal" class="add-book">+</button>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
+  props: ["openModal"],
 };
 </script>
 

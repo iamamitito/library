@@ -1,9 +1,9 @@
 <template>
   <div class="books">
     <div class="books-read">
-      <h2 class="title-read">My Read Books</h2>
-      <div v-bind:key="book.id" v-for="book in books">
-        <template v-if="book.book.read">
+      <h2 class="title-unread">Unread Books</h2>
+      <div class="books-container" v-bind:key="book.id" v-for="book in books">
+        <template v-if="!book.book.read">
           <Book
             v-bind:book="book.book"
             v-on:del-book="$emit('del-book', book.id)"
@@ -13,9 +13,9 @@
       </div>
     </div>
     <div class="books-read">
-      <h2 class="title-unread">My Unread Books</h2>
-      <div v-bind:key="book.id" v-for="book in books">
-        <template v-if="!book.book.read">
+      <h2 class="title-read">Read Books</h2>
+      <div class="books-container" v-bind:key="book.id" v-for="book in books">
+        <template v-if="book.book.read">
           <Book
             v-bind:book="book.book"
             v-on:del-book="$emit('del-book', book.id)"
@@ -45,6 +45,9 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 }
+.books-container {
+  width: 90%;
+}
 .books h2 {
   color: #fff;
   font-weight: 100;
@@ -55,12 +58,12 @@ export default {
   margin-bottom: 10px;
 }
 .books .title-read {
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-}
-.books .title-unread {
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
+}
+.books .title-unread {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 .books-read,
 .books-unread {
@@ -68,6 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px auto;
 }
 
 @media (max-width: 1020px) {

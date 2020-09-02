@@ -9,7 +9,7 @@
       v-bind:checked="book.read"
     />
     <button class="delete-btn" @click="$emit('del-book', book.id)" title="Delete this book">
-      <i class="fas fa-trash-alt"></i>
+      <i class="far fa-trash-alt"></i>
     </button>
   </div>
 </template>
@@ -27,21 +27,19 @@ export default {
 </script>
 
 <style scoped>
-.is-read {
-  text-decoration: line-through;
-}
 .book {
   padding: 20px;
   background-color: #202125;
   color: #ffff;
   border-radius: 10px;
-  margin: 20px;
   width: 450px;
   position: relative;
+  margin: 10px auto;
 }
 .book-title {
   font-size: 25px;
   font-weight: 100;
+  max-width: 99%;
 }
 .book-author {
   color: #707175;
@@ -88,17 +86,22 @@ export default {
   position: absolute;
   right: 10px;
   top: 10px;
-}
-.delete-btn {
   background-color: transparent;
   border: 0;
-  color: #3f4146;
+  color: #51535a;
   cursor: pointer;
   font-size: 16px;
 }
-@media (max-width: 900px) {
+
+@media (max-width: 1020px) {
   .book {
     width: 100%;
+  }
+  .book-title {
+    font-size: 20px;
+  }
+  .book-author {
+    font-size: 15px;
   }
 }
 </style>
