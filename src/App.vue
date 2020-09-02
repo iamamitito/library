@@ -49,7 +49,7 @@ export default {
         .doc(id)
         .delete()
         .then(() => {
-          console.log("Book successfully deleted!");
+          return true;
         })
         .catch((error) => {
           console.error("Error removing book: ", error);
@@ -62,7 +62,7 @@ export default {
           read: !object.book.read,
         })
         .then(() => {
-          console.log("Book successfully updated!");
+          return true;
         })
         .catch((error) => {
           console.error("Error updating book: ", error);
